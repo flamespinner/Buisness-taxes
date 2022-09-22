@@ -4,8 +4,7 @@
 
 
 ---------------- Initialize Vorpcore ----------------
-local VORPcore = {}
-local VORPinv
+VORPcore = {}
 
 TriggerEvent("getCore", function(core)
     VORPcore = core
