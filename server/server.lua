@@ -74,8 +74,25 @@ end)
 
 RegisterCommand("getTime", function (source, args, rawCommand)
     local source = source
-    local time = os.date("%A %H:%M:%S")
+    local time = os.date("%H:%M:%S")
+    local day = os.date("%A")
     
-    print(time)
+    print("Today is:", time)
+
+    if (day == "Monday") then
+        print("It's Monday!")
+    end
+    if (day == "Tuesday") then
+        print("It's Tuesday!")
+    end
+    if (day == "Wednesday") then
+        print("It's Wednesday!")
+    end
+    if (day == "Thursday") then
+        print("It's Thursday!")
+    end
+    if (day == "Friday") then
+        print("It's Friday!")
+    end
 
 end)
