@@ -76,8 +76,6 @@ RegisterCommand("getTime", function (source, args, rawCommand)
     local source = source
     local time = os.date("%H:%M:%S")
     local day = os.date("%A")
-    
-    print("Today is:", time)
 
     if (day == "Monday") then
         print("It's Monday!")
@@ -94,5 +92,7 @@ RegisterCommand("getTime", function (source, args, rawCommand)
     if (day == "Friday") then
         print("It's Friday!")
     end
+
+    print("The Time is:", time)
 
 end)
