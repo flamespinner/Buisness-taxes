@@ -58,7 +58,7 @@ RegisterCommand("sqltest", function(source, args, rawCommand)
     local Character = User.getUsedCharacter
     local identifier = Character.identifier
     local charid = Character.charIdentifier
-    local job = Character.job -Get the job from the characters table
+    local job = Character.job --Get the job from the characters table
 
     exports.ghmattimysql:execute("SELECT * FROM characters", {}, function(result)
         if result[1] then
