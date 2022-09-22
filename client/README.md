@@ -8,4 +8,4 @@ Due to the nature of client code, any code in the client can be seen/modified by
 
 ## Helper Functions
 Any helper functions added to server/functions.lua can be utilized in Client side code.
-- Abstract your functions and keep the main files clean.    
+- Abstract your functions and keep the main files clean.
