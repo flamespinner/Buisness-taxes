@@ -23,19 +23,6 @@ shared_scripts {
     'languages/*.lua',
     'shared/functions.lua'
 }
-
----------------- Custom Html/Css/JS UI ----------------------------------------------
----------------- Remove these if you do not wish to have a custom UI ----------------
-files {
-    'ui/*',
-    'ui/vendor/*',
-    'ui/assets/*',
-    'ui/assets/fonts/*'
-}
-    
-ui_page 'ui/index.html'
---------------------------------------------------------------------------------------
-
 ---------------- Dependencies -------------------------------------------------------
 ---- What other scripts (if any) does your script depend on. REMOVE THIS IF NONE ----
 dependencies { 

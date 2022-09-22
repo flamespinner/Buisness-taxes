@@ -4,52 +4,15 @@
 
 
 ---------------- Initialize Vorpcore ----------------
-local VORPcore = {}
-local VORPinv
+local VorpCore = {}
 
 TriggerEvent("getCore", function(core)
-    VORPcore = core
+    VorpCore = core
 end)
-
----------------- Initialize Vorpcore Inventory API ----------------
-VORPinv = exports.vorp_inventory:vorp_inventoryApi()
 
 ---------------- VORP Core Export API Examples ----------------
 -- local Character = VorpCore.getUser(_source).getUsedCharacter
 
----------------- VORP Inventory Export API Examples ----------------
-
----------------- Items ----------------
--- RegisterUsableItem let you register an item in your Database as useable.
---[[VorpInv.RegisterUsableItem("meat", function(data)
-    -- Code here will enact when an item is "used"
-    
-    VorpInv.subItem(data.source, "meat", 1) --Removed 1 meat item from the players inventor
-    VorpInv.CloseInv(data.source) --Close the players Inventory window
-end)]]
-
--- Register a Server Event, this allows the client to communicate to the server.
--- REPLACE boilerplate with your script name.
---[[RegisterServerEvent("boilerplate:giveMeat")
-AddEventHandler("boilerplate:giveMeat", function()
-    -- Localize source to ensure it is available
-    local _source = source 
-    
-    -- local playerinv = VorpInv.getUserInventory(_source) -- Get the players total inventory as a table.
-    -- local count = VorpInv.getItemCount(_source, 'meat') -- Get the amount of an item in the players inventory.
-    
-    VorpInv.addItem(_source, 'meat', 1) --Add Item will not add more than the items max defined in the database..
-end)]]
-
----------------- Weapons ----------------
--- CREATE A WEAPON
--- VorpInv.createWeapon(tonumber(_source), item, ammo, components)
-
--- REMOVE A WEAPON
---  VorpInv.subWeapon(_source, item)
-
--- ADD A WEAPON
--- VorpInv.giveWeapon(_source, item, 0)
 
 ---------------- Notification Examples ----------------
 --[[RegisterCommand("servernotify", function(source, args, rawCommand)
