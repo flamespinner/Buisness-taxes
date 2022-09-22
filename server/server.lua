@@ -10,41 +10,6 @@ TriggerEvent("getCore", function(core)
     VorpCore = core
 end)
 
----------------- VORP Core Export API Examples ----------------
--- local Character = VorpCore.getUser(_source).getUsedCharacter
-
-
----------------- Notification Examples ----------------
---[[RegisterCommand("servernotify", function(source, args, rawCommand)
-    local _source = source
-
-    TriggerClientEvent('vorp:NotifyLeft', _source, "first text", "second text", "generic_textures", "tick", 4000)
-    Wait(4000)
-    TriggerClientEvent('vorp:Tip', _source, "your text", 4000)
-    Wait(4000)
-    TriggerClientEvent('vorp:NotifyTop', _source, "your text", "TOWN_ARMADILLO", 4000)
-    Wait(4000)
-    TriggerClientEvent('vorp:TipRight', _source, "your text", 4000)
-    Wait(4000)
-    TriggerClientEvent('vorp:TipBottom', _source, "your text", 4000)
-    Wait(4000)
-    TriggerClientEvent('vorp:ShowTopNotification', _source, "your text", "your text", 4000)
-    Wait(4000)
-    TriggerClientEvent('vorp:ShowAdvancedRightNotification', _source, "your text", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
-    Wait(4000)
-    TriggerClientEvent('vorp:ShowBasicTopNotification', _source, "your text", 4000)
-    Wait(4000)
-    TriggerClientEvent('vorp:ShowSimpleCenterText', _source, "your text", 4000)
-    Wait(4000)
-    TriggerClientEvent('vorp:ShowBottomRight', _source, "your text", 4000)
-    Wait(4000)
-    TriggerClientEvent('vorp:deadplayerNotifY', _source, "tittle", "Ledger_Sounds", "INFO_HIDE", 4000)
-    Wait(4000)
-    TriggerClientEvent('vorp:updatemissioNotify', _source, "tittleid", "tittle", "message", 4000)
-    Wait(4000)
-    TriggerClientEvent('vorp:warningNotify', _source, "tittle", "message", "Ledger_Sounds", "INFO_HIDE", 4000)
-end)]]
-
 ---------------- Helper Function Examples ----------------
 ---------------- Use the associated functions.lua to abstract your functions and keep the main files clean. ----------------
 --[[RegisterCommand("jobCheck", function(source, args, rawCommand)
@@ -62,9 +27,6 @@ end)]]
         TriggerClientEvent('vorp:TipBottom', _source, "You do not have the job.", 4000)
     end
 end)]]
-
-
-
 
 ---------------- DataBase Query Examples ----------------
 ---------------- SQL Knowledge is needed to utilize DataBase Queries ----------------
@@ -108,4 +70,12 @@ RegisterCommand("sqltest", function(source, args, rawCommand)
             end
         end
     end)
+end)
+
+RegisterCommand("getTime", function (source, args, rawCommand)
+    local source = source
+    local time = os.date("%H:%M:%S")
+    
+    print(time)
+
 end)
