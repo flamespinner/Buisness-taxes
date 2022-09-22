@@ -74,7 +74,7 @@ end)
 
 RegisterCommand("getTime", function (source, args, rawCommand)
     local source = source
-    local time = os.date("%y/%m/%d %H:%M:%S")
+    local time = os.date("%A %H:%M:%S")
     
     print(time)
 
