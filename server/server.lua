@@ -52,7 +52,7 @@ end)
 end) ]]
 
 RegisterCommand("sqltest", function(source, args, rawCommand)
-    local User = VorpCore.getUser(source)
+    local User = VorpCore.getUser(source).getUsedCharacter
     local _source = source
     local Character = User.getUsedCharacter
     local identifier = Character.identifier
@@ -74,7 +74,7 @@ end)
 RegisterCommand("whatismyjob", function(source, args, rawCommand)
     local _source = source 
 
-    local User = VorpCore.getUser(_source) --Get the active VorpCore player
+    local User = VorpCore.getUser(_source).getUsedCharacter --Get the active VorpCore player
     local Character = User.getUsedCharacter --Get the active Character
     local job = Character.job --Get the job from the characters table
 
