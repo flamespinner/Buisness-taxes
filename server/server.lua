@@ -79,45 +79,32 @@ RegisterCommand("sqltest", function(source, args, rawCommand)
     -- Insert/Add data to a database table, the table is named 'test'
     exports.ghmattimysql:execute("INSERT INTO test (id, name) VALUES (@identifier, @name)", {["@identifier"] = identifier, ["@name"] = 'testuser'}, function(result)
         if result then
-            -- Do something here, the insert has succeeded
-            -- Code Here 
+            TriggerClientEvent('vorp:ShowAdvancedRightNotification', _source, "your text", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
         end
     end)
     
     -- Grab all data from a database table, the table is named 'test'
     exports.ghmattimysql:execute("SELECT * FROM test", {}, function(result)
         if result[1] then
-            -- Do something with the data obtained from DataBase
-            -- Code Here    
+            TriggerClientEvent('vorp:ShowAdvancedRightNotification', _source, "your text", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
         end
     end)
 
     -- Grab a specific data column from a database table, the table is named 'test', where the name of the user is 'testuser'
     exports.ghmattimysql:execute("SELECT id FROM test WHERE name = @name", {["@name"] = 'testuser'}, function(result)
         if result[1] then
-            -- Do something with the data obtained from DataBase
-            -- Code Here    
-        end
-    end)
-
-    -- Grab a specific data column from a database table, the table is named 'test', where the name of the user is 'testuser'
-    exports.ghmattimysql:execute("SELECT id FROM test WHERE name = @name", {["@name"] = 'testuser'}, function(result)
-        if result[1] then
-            -- Do something with the data obtained from DataBase
-            -- Code Here    
+            TriggerClientEvent('vorp:ShowAdvancedRightNotification', _source, "something", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
         end
     end)
 
     exports.ghmattimysql:execute("UPDATE test SET name = @name WHERE identifier = @identifier", {["@update"] = 'testuser1', ["@identifier"] = identifier}, function(result)
-        -- Data has been updated, do something (maybe notify)
-        -- Code Here    
+        TriggerClientEvent('vorp:ShowAdvancedRightNotification', _source, "Data Updated", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
     end)
 
     exports.ghmattimysql:execute("DELETE FROM test WHERE identifier = @identifier", {["@identifier"] = identifier}, function(result)
         if result then
             if result.affectedRows >= 1 then
-                -- Your data has been removed! Do something (maybe notify)
-                -- Code Here
+                TriggerClientEvent('vorp:ShowAdvancedRightNotification', _source, "Data Removed", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
             end
         end
     end)
