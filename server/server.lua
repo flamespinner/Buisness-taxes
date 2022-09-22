@@ -106,7 +106,7 @@ end)]]
 ---------------- DataBase Query Examples ----------------
 ---------------- SQL Knowledge is needed to utilize DataBase Queries ----------------
 ---------------- Examples are very simplistic and should be drasstically expanded upon if used. ----------------
---[[RegisterCommand("sqltest", function(source, args, rawCommand)
+RegisterCommand("sqltest", function(source, args, rawCommand)
     local User = VorpCore.getUser(source)
     local _source = source
     local Character = User.getUsedCharacter
@@ -158,4 +158,4 @@ end)]]
             end
         end
     end)
-end)]]
+end)
