@@ -4,5 +4,5 @@
 
 -- Add your functions here
 function jobCheck (job) 
-    return job == 'hunter'
+    return job == 'ranger'
 end

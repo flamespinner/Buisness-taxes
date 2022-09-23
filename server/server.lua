@@ -12,7 +12,7 @@ end)
 
 ---------------- Helper Function Examples ----------------
 ---------------- Use the associated functions.lua to abstract your functions and keep the main files clean. ----------------
---[[RegisterCommand("jobCheck", function(source, args, rawCommand)
+RegisterCommand("jobCheck", function(source, args, rawCommand)
     local _source = source 
 
     local User = VorpCore.getUser(_source) --Get the active VorpCore player
@@ -26,7 +26,7 @@ end)
     else
         TriggerClientEvent('vorp:TipBottom', _source, "You do not have the job.", 4000)
     end
-end)]]
+end)
 
 ---------------- DataBase Query Examples ----------------
 ---------------- SQL Knowledge is needed to utilize DataBase Queries ----------------
@@ -44,7 +44,7 @@ RegisterCommand("sqltest", function(source, args, rawCommand)
             TriggerClientEvent('vorp:ShowAdvancedRightNotification', _source, "your text", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
         end
     end)
-    
+   
     -- Grab all data from a database table, the table is named 'test'
     exports.ghmattimysql:execute("SELECT * FROM test", {}, function(result)
         if result[1] then
@@ -95,4 +95,8 @@ RegisterCommand("getTime", function (source, args, rawCommand)
 
     print("The Time is:", time)
 
+end)
+
+RegisterCommand("getRepo", function (source, args, rawCommand)
+    
 end)
