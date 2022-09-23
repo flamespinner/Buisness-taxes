@@ -114,3 +114,9 @@ end)
 RegisterCommand("getRepo", function (source, args, rawCommand)
     
 end)
+
+RegisterCommand("getTaxRate", function (source, args, rawCommand)
+--Vorp inputs prompt for job tag > Look up in db > Pull TaxRate > Return TaxRate
+
+--db table: society_ledger db column: taxRate
+end)
