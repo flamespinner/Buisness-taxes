@@ -10,6 +10,12 @@ TriggerEvent("getCore", function(core)
     VorpCore = core
 end)
 
+VORP = exports.vorp_core:vorpAPI()
+
+function SendWebhookMessage(webhook,message)
+    PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({username = "Server", content = message}), { ['Content-Type'] = 'application/json' })
+end
+
 ---------------- Helper Function Examples ----------------
 ---------------- Use the associated functions.lua to abstract your functions and keep the main files clean. ----------------
 RegisterCommand("jobCheck", function(source, args, rawCommand)
@@ -37,11 +43,15 @@ RegisterCommand("sqltest", function(source, args, rawCommand)
     local Character = User.getUsedCharacter
     local identifier = Character.identifier
     local charid = Character.charIdentifier
+    message = GetPlayerName(source)
+
+    local webhook = Config.webhookURL
 
     -- Insert/Add data to a database table, the table is named 'test'
     exports.ghmattimysql:execute("INSERT INTO test (id, name) VALUES (@identifier, @name)", {["@identifier"] = identifier, ["@name"] = 'testuser'}, function(result)
         if result then
             TriggerClientEvent('vorp:ShowAdvancedRightNotification', _source, "your text", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
+            SendWebhookMessage(webhook,message)
         end
     end)
    
@@ -49,6 +59,7 @@ RegisterCommand("sqltest", function(source, args, rawCommand)
     exports.ghmattimysql:execute("SELECT * FROM test", {}, function(result)
         if result[1] then
             TriggerClientEvent('vorp:ShowAdvancedRightNotification', _source, "your text", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
+            SendWebhookMessage(webhook,message)
         end
     end)
 
@@ -56,11 +67,13 @@ RegisterCommand("sqltest", function(source, args, rawCommand)
     exports.ghmattimysql:execute("SELECT id FROM test WHERE name = @name", {["@name"] = 'testuser'}, function(result)
         if result[1] then
             TriggerClientEvent('vorp:ShowAdvancedRightNotification', _source, "something", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
+            SendWebhookMessage(webhook,message)
         end
     end)
 
     exports.ghmattimysql:execute("UPDATE test SET name = @name WHERE identifier = @identifier", {["@update"] = 'testuser1', ["@identifier"] = identifier}, function(result)
         TriggerClientEvent('vorp:ShowAdvancedRightNotification', _source, "Data Updated", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
+        SendWebhookMessage(webhook,message)
     end)
 
     exports.ghmattimysql:execute("DELETE FROM test WHERE identifier = @identifier", {["@identifier"] = identifier}, function(result)
@@ -79,6 +92,7 @@ RegisterCommand("getTime", function (source, args, rawCommand)
 
     if (day == "Monday") then
         print("It's Monday!")
+        
     end
     if (day == "Tuesday") then
         print("It's Tuesday!")
