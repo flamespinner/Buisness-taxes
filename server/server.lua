@@ -59,6 +59,7 @@ RegisterCommand("sqltest", function(source, args, rawCommand)
     exports.ghmattimysql:execute("SELECT * FROM test", {}, function(result)
         if result[1] then
             TriggerClientEvent('vorp:ShowAdvancedRightNotification', _source, "your text", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
+            print(result)
             SendWebhookMessage(webhook,message)
         end
     end)
