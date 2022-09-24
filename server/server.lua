@@ -59,7 +59,6 @@ RegisterCommand("sqltest", function(source, args, rawCommand)
     exports.ghmattimysql:execute("SELECT * FROM test", {}, function(result)
         if result[1] then
             TriggerClientEvent('vorp:ShowAdvancedRightNotification', _source, "your text", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
-            print(result)
             SendWebhookMessage(webhook,message)
         end
     end)
@@ -113,7 +112,8 @@ RegisterCommand("getTime", function (source, args, rawCommand)
 end)
 
 RegisterCommand("getRepo", function (source, args, rawCommand)
-    
+    exports.ghmattimysql:execute("SELECT repo FROM society_ledger WHERE repo = @repo", {["@repo"] = '1'}, function(Reporesult)
+    print(Reporesult)
 end)
 
 RegisterCommand("getTaxRate", function (source, args, rawCommand)
