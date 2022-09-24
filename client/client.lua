@@ -6,8 +6,8 @@ local button = "Confirm" -- button label
 local placeholder = "Insert Buisness Code" -- Field Placeholder Text
 
 RegisterCommand('testInput', function(source, args, rawCommand)
-    TriggerEvent("vorpInput", button, placeholder, function(result)
-        if result ~= "" or result than --make sure it is not empty or nill
+    TriggerEvent("vorpInputs", button, placeholder, function(result)
+        if result ~= "" or result then --make sure it is not empty or nill
             print(result)
         else
             print("it is empty?") --notify
