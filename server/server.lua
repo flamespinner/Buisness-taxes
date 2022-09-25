@@ -24,7 +24,7 @@ AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
 
     --normal mySQL Query: SELECT taxRate FROM society_ledger WHERE job = 'vtsaloon';
     exports.ghmattimysql:execute("SELECT taxRate FROM society_ledger WHERE job = @jobCode", { ['jobCode'] = jobCode }, function(result)
-        if result ~= nil then
+        if result[1] ~= nil then
             print(result[1].taxRate)
         end
     end)
