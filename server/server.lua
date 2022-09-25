@@ -20,33 +20,14 @@ RegisterServerEvent('Buisness-taxes:getTaxRate')
 AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
 
     local jobCode = inputResult
-    print("New Var - jobCode: ", jobCode)
+    print(jobCode)
 
-    exports.ghmattimysql:execute("SELECT * FROM society_ledger WHERE 'job' = ?", { jobCode }, function(result)
+    --normal mySQL Query: SELECT taxRate FROM society_ledger WHERE job = 'vtsaloon';
+    exports.ghmattimysql:execute("SELECT taxRate FROM society_ledger WHERE 'job' = ?", { jobCode }, function(result)
        print(result[1])
     end)
 end)
-
-
-
----------------- Helper Function Examples ----------------
----------------- Use the associated functions.lua to abstract your functions and keep the main files clean. ----------------
-RegisterCommand("jobCheck", function(source, args, rawCommand)
-    local _source = source 
-
-    local User = VorpCore.getUser(_source) --Get the active VorpCore player
-    local Character = User.getUsedCharacter --Get the active Character
-    local job = Character.job --Get the job from the characters table
-
-    local validJob = jobCheck(job) --Use server helper function from functions.lua
-
-    if validJob == true then
-        TriggerClientEvent('vorp:TipBottom', _source, "You have the job!", 4000)
-    else
-        TriggerClientEvent('vorp:TipBottom', _source, "You do not have the job.", 4000)
-    end
-end)
-
+--exports.ghmattimysql:execute("SELECT id FROM test WHERE name = @name", {["@name"] = 'testuser'}, function(result)
 
 
 
