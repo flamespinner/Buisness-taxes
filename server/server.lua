@@ -27,7 +27,7 @@ AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
         if result[1] ~= nil then
             local taxRate = result[1].taxRate
             print(result[1].taxRate)
-            TriggerClientEvent('vorp:TipRight', _source, "your text", 4000)
+            TriggerClientEvent('vorp:TipRight', _source, "Tax Rate is:" .. taxRate, 4000)
         end
     end)
 end)
