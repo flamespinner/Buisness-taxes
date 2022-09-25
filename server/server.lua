@@ -29,8 +29,8 @@ AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
     print("New Var - jobCode: ", jobCode)
 
     exports.ghmattimysql:execute("SELECT * FROM society_ledger WHERE job = @jobCode", {jobCode}, function(result)
-        print(result)
-        print(jobcode)
+        print("sql result:", result)
+        print("jobcode:", jobcode)
         if result[1] ~= nil then
             print("Debug: result[1] ~= nil")
             print("Debug: result[1].job: ", result[1].job)
