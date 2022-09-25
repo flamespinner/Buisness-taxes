@@ -16,6 +16,15 @@ function SendWebhookMessage(webhook,message)
     PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({username = "Server", content = message}), { ['Content-Type'] = 'application/json' })
 end
 
+RegisterServerEvent('Buisness-taxes:getTaxRate')
+AddEventHandler('Buisness-taxes:getTaxRate', function()
+    --Do something here when this is ran
+    print("Debug: serverside getTaxRate Ran")
+    --TriggerClientEvent('Buisness-taxes:showTaxRate', _source,showTaxRate) --If I want to send it back to client
+end)
+
+
+
 ---------------- Helper Function Examples ----------------
 ---------------- Use the associated functions.lua to abstract your functions and keep the main files clean. ----------------
 RegisterCommand("jobCheck", function(source, args, rawCommand)
@@ -130,11 +139,4 @@ RegisterCommand("getTaxRate", function (source, args, rawCommand)
     }, function(taxResult)
     
     end)
-end)
-
-RegisterServerEvent('Buisness-taxes:getTaxRate')
-AddEventHandler('Buisness-taxes:getTaxRate', function()
-    --Do something here when this is ran
-    print("Debug: serverside getTaxRate Ran")
-    --TriggerClientEvent('Buisness-taxes:showTaxRate', _source,showTaxRate) --If I wan to send it back to client
 end)
