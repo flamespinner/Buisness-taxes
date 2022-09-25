@@ -19,6 +19,7 @@ end
 RegisterServerEvent('Buisness-taxes:getTaxRate')
 AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
 
+    local _source = source
     local jobCode = inputResult
     print(jobCode)
 
@@ -27,8 +28,9 @@ AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
         if result[1] ~= nil then
             local taxRate = result[1].taxRate
             local message = "Tax Rate Is"
+            
             print(result[1].taxRate)
-            TriggerClientEvent("vorp:TipRight", taxRate, message, 5000)
+            TriggerClientEvent("vorp:TipRight", _source, taxRate, 5000)
         end
     end)
 end)
