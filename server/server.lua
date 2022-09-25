@@ -18,28 +18,12 @@ end
 
 RegisterServerEvent('Buisness-taxes:getTaxRate')
 AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
-    if inputResult == nil then
-        print("[Buisness-taxes:getTaxRate] source is null")
-    end
 
     local jobCode = inputResult
-    --Do something here when this is ran
-    print("Debug: serverside getTaxRate Ran")
-    print("Incoming - inputResult: ", inputResult)
     print("New Var - jobCode: ", jobCode)
 
     exports.ghmattimysql:execute("SELECT * FROM society_ledger WHERE job = @jobCode", {jobCode}, function(result)
-        print("sql result:", result)
-        print("jobcode:", jobcode)
-        if result[1] ~= nil then
-            print("Debug: result[1] ~= nil")
-            print("Debug: result[1].job: ", result[1].job)
-            print("Debug: result[1].taxRate: ", result[1].taxRate)
-            TriggerClientEvent('Buisness-taxes:showTaxRate', source, result[1].taxRate)
-        else
-            print("Debug: result[1] == nil")
-            TriggerClientEvent('Buisness-taxes:showTaxRate', source, "No Tax Rate Found")
-        end
+       return result
     end)
 end)
 
