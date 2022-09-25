@@ -11,7 +11,7 @@ RegisterCommand("inputsTest", function(source, args, rawCommand)
 
     TriggerEvent("vorpinputs:getInput", buttonTxt, placeholderTxt, function(inputResult)
         if inputResult ~= "" or inputResult then
-            TriggerServerEvent("Buisness-taxes:getTaxRate") -- Trigger Event
+            TriggerServerEvent("Buisness-taxes:getTaxRate", inputResult) -- Trigger Event
             --Do something
             print(inputResult)
         else
