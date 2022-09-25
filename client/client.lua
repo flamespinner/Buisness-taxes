@@ -10,7 +10,7 @@ RegisterCommand("inputsTest", function(source, args, rawCommand)
     local placeholderTxt = "Job Title"
 
     TriggerEvent("vorpinputs:getInput", buttonTxt, placeholderTxt, function(inputResult)
-        if inputResult ~= "" or inputResult than
+        if inputResult ~= "" or inputResult then
             print(inputResult)
         else
             print("Empty String")
