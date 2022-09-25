@@ -17,9 +17,10 @@ function SendWebhookMessage(webhook,message)
 end
 
 RegisterServerEvent('Buisness-taxes:getTaxRate')
-AddEventHandler('Buisness-taxes:getTaxRate', function()
+AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
     --Do something here when this is ran
     print("Debug: serverside getTaxRate Ran")
+    print(inputResult)
     --TriggerClientEvent('Buisness-taxes:showTaxRate', _source,showTaxRate) --If I want to send it back to client
 end)
 
