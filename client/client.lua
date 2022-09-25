@@ -16,6 +16,7 @@ RegisterCommand("inputsTest", function(source, args, rawCommand)
             print(inputResult)
         else
             print("Empty String")
+            TriggerEvent('vorp:warningNotify', "Error", "String Can't be Empty", "Ledger_Sounds", "INFO_HIDE", 4000)
         end
     end)
 end)
