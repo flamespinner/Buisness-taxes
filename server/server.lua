@@ -128,16 +128,3 @@ RegisterCommand("getRepo", function (source, args, rawCommand)
         SendWebhookMessage(webhook,Reporesult)
     end)
 end)
-
-RegisterCommand("getTaxRate", function (source, args, rawCommand)
-    local _source = source --??
-    --local jobTitle = [VERIABLE FROM INPUTS]
-    --local taxRate = somethingsomethingsomething
-    -- SELECT [INFO] FROM [TABLE] WHERE [COLUMN] = ? AND [COLUMN] = ? AND [COLUMN] = ?
-    exports.ghmattimysql:execute( "SELECT * FROM society_ledger WHERE taxRate = ?;",
-    {
-        d
-    }, function(taxResult)
-    
-    end)
-end)
