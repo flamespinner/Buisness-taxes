@@ -27,7 +27,8 @@ shared_scripts {
 ---- What other scripts (if any) does your script depend on. REMOVE THIS IF NONE ----
 dependencies { 
     'vorp_core',
-    'vorp_inputs'
+    'vorp_inputs',
+    'syn_society'
 }
 --------------------------------------------------------------------------------------
 
