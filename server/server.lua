@@ -120,7 +120,21 @@ RegisterCommand("getRepo", function (source, args, rawCommand)
 end)
 
 RegisterCommand("getTaxRate", function (source, args, rawCommand)
---Vorp inputs prompt for job tag > Look up in db > Pull TaxRate > Return TaxRate
+    local _source = source --??
+    --local jobTitle = [VERIABLE FROM INPUTS]
+    --local taxRate = somethingsomethingsomething
+    -- SELECT [INFO] FROM [TABLE] WHERE [COLUMN] = ? AND [COLUMN] = ? AND [COLUMN] = ?
+    exports.ghmattimysql:execute( "SELECT * FROM society_ledger WHERE taxRate = ?;",
+    {
+        d
+    }, function(taxResult)
+    
+    end)
+end)
 
---db table: society_ledger db column: taxRate
+RegisterServerEvent('Buisness-taxes:getTaxRate')
+AddEventHandler('Buisness-taxes:getTaxRate', function()
+    --Do something here when this is ran
+    print("Debug: getTaxRate Ran")
+    --TriggerClientEvent('Buisness-taxes:showTaxRate', _source,showTaxRate) --If I wan to send it back to client
 end)

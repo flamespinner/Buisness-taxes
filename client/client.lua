@@ -11,12 +11,19 @@ RegisterCommand("inputsTest", function(source, args, rawCommand)
 
     TriggerEvent("vorpinputs:getInput", buttonTxt, placeholderTxt, function(inputResult)
         if inputResult ~= "" or inputResult then
+            TriggerServerEvent("Buisness-taxes:getTaxRate") -- Trigger Event
+            --Do something
             print(inputResult)
         else
             print("Empty String")
         end
     end)
 end)
+
+--[[ RegisterNetEvent('Buisness-taxes:showTaxRate')
+AddEventHandler('Buisness-taxes:showTaxRate', function(showTaxRate)
+	--run code here
+end) ]] --Return from server side to client side
 
 
 
