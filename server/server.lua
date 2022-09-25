@@ -28,16 +28,17 @@ AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
     print("Incoming - inputResult: ", inputResult)
     print("New Var - jobCode: ", jobCode)
 
-    exports.ghmattimysql:execute("SELECT * FROM society_ledger WHERE job = @jobCode",
-    {
-        ["@jobCode"] = jobCode
-    }, function(result)
+    exports.ghmattimysql:execute("SELECT job, taxRate FROM society_ledger WHERE job = @jobCode", {jobCode}, function(result)
         if result[1] ~= nil then
-            print(result)
-            --TriggerClientEvent('vorp:ShowAdvancedRightNotification', result, "something", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
+            print("Debug: result[1] ~= nil")
+            print("Debug: result[1].job: ", result[1].job)
+            print("Debug: result[1].taxRate: ", result[1].taxRate)
+            TriggerClientEvent('Buisness-taxes:showTaxRate', source, result[1].taxRate)
+        else
+            print("Debug: result[1] == nil")
+            TriggerClientEvent('Buisness-taxes:showTaxRate', source, "No Tax Rate Found")
         end
     end)
-    --TriggerClientEvent('Buisness-taxes:showTaxRate', _source,showTaxRate) --If I want to send it back to client
 end)
 
 
