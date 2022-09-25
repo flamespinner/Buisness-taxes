@@ -18,7 +18,6 @@ end
 
 RegisterServerEvent('Buisness-taxes:getTaxRate')
 AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
-
     local _source = source
     local jobCode = inputResult
     print(jobCode)
@@ -27,10 +26,8 @@ AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
     exports.ghmattimysql:execute("SELECT taxRate FROM society_ledger WHERE job = @jobCode", { ['jobCode'] = jobCode }, function(result)
         if result[1] ~= nil then
             local taxRate = result[1].taxRate
-            local message = "Tax Rate Is"
-            
             print(result[1].taxRate)
-            TriggerClientEvent("vorp:TipRight", _source, taxRate, 5000)
+            TriggerClientEvent('vorp:TipRight', _source, "your text", 4000)
         end
     end)
 end)
