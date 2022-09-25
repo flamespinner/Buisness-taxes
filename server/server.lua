@@ -18,9 +18,19 @@ end
 
 RegisterServerEvent('Buisness-taxes:getTaxRate')
 AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
+    local jobCode = inputResult
     --Do something here when this is ran
     print("Debug: serverside getTaxRate Ran")
-    print(inputResult)
+    print("Incoming: ", inputResult)
+    print("New Var: ", jobCode)
+
+    -- Grab a specific data column from a database table, the table is named 'test', where the name of the user is 'testuser'
+    exports.ghmattimysql:execute("SELECT taxRate FROM society_ledger WHERE job = @jobCode", {}, function(result)
+        if result[1] then
+            print(result)
+            --TriggerClientEvent('vorp:ShowAdvancedRightNotification', _source, "something", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
+        end
+    end)
     --TriggerClientEvent('Buisness-taxes:showTaxRate', _source,showTaxRate) --If I want to send it back to client
 end)
 
@@ -43,6 +53,12 @@ RegisterCommand("jobCheck", function(source, args, rawCommand)
         TriggerClientEvent('vorp:TipBottom', _source, "You do not have the job.", 4000)
     end
 end)
+
+
+
+
+
+
 
 ---------------- DataBase Query Examples ----------------
 ---------------- SQL Knowledge is needed to utilize DataBase Queries ----------------
