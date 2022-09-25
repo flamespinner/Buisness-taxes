@@ -113,9 +113,8 @@ end)
 
 RegisterCommand("getRepo", function (source, args, rawCommand)
     local webhook = Config.webhookURL
-    
+
     exports.ghmattimysql:execute("SELECT repo FROM society_ledger WHERE repo = @repo", {["@repo"] = '1'}, function(Reporesult)
-        print(Reporesult)
         SendWebhookMessage(webhook,Reporesult)
     end)
 end)
