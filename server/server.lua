@@ -28,8 +28,10 @@ AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
     print("Incoming: ", inputResult)
     print("New Var: ", jobCode)
 
-    -- Grab a specific data column from a database table, the table is named 'test', where the name of the user is 'testuser'
-    exports.ghmattimysql:execute("SELECT taxRate FROM society_ledger WHERE job = @jobCode", {}, function(result)
+    exports.ghmattimysql:execute("SELECT * FROM society_ledger WHERE job = ?",
+    {
+        jobCode
+    }, function(result)
         if result[1] then
             print(result)
             --TriggerClientEvent('vorp:ShowAdvancedRightNotification', _source, "something", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
