@@ -19,7 +19,7 @@ end
 RegisterServerEvent('Buisness-taxes:getTaxRate')
 AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
 
-    local jobCode = "rdsaloon"
+    local jobCode = inputResult
     print(jobCode)
 
     --normal mySQL Query: SELECT taxRate FROM society_ledger WHERE job = 'vtsaloon';
