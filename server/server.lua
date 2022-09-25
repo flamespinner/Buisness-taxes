@@ -18,6 +18,10 @@ end
 
 RegisterServerEvent('Buisness-taxes:getTaxRate')
 AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
+    if inputResult == nil then
+        print("[Buisness-taxes:getTaxRate] source is null")
+    end
+
     local jobCode = inputResult
     --Do something here when this is ran
     print("Debug: serverside getTaxRate Ran")
