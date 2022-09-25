@@ -23,7 +23,7 @@ AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
     print("New Var - jobCode: ", jobCode)
 
     exports.ghmattimysql:execute("SELECT * FROM society_ledger WHERE job = @jobCode", {jobCode}, function(result)
-       return result
+       print(result[1])
     end)
 end)
 
