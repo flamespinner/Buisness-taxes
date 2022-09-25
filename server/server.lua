@@ -29,7 +29,6 @@ AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
         end
     end)
 end)
---exports.ghmattimysql:execute("SELECT id FROM test WHERE name = @name", {["@name"] = 'testuser'}, function(result)
 
 
 

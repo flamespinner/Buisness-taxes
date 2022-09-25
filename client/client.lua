@@ -5,7 +5,7 @@
 local button = "Confirm" -- button label 
 local placeholder = "Insert Buisness Code" -- Field Placeholder Text
 
-RegisterCommand("inputsTest", function(source, args, rawCommand)
+RegisterCommand("gettaxrate", function(source, args, rawCommand)
     local buttonTxt = "Confirm"
     local placeholderTxt = "Job Title"
 
