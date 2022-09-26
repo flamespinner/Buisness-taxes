@@ -25,7 +25,7 @@ RegisterCommand("settaxrate", function()
     local buttonTxt = "Update Tax"
     local placeholderTxt = "Amount"
     local splitString = {}
-    local data1, data2 = splitString[1],splitString[2]
+    local job, newTaxValue = splitString[1],splitString[2]
 
     TriggerEvent("vorpinputs:getInput", buttonTxt, placeholderTxt, function(result)
         if result ~= "" or result then
@@ -34,8 +34,8 @@ RegisterCommand("settaxrate", function()
                 splitString[#splitString + 1] = i
             end
         
-            TriggerServerEvent("Buisness-taxes:setTaxRate", data1, data2) -- Trigger Event
-            print(data1,data2)
+            TriggerServerEvent("Buisness-taxes:setTaxRate", job, newTaxValue) -- Trigger Event
+            print(job, newTaxValue)
         else
             print("its empty?") -- notify
         end

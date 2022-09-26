@@ -33,15 +33,16 @@ AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
 end)
 
 RegisterServerEvent('Buisness-taxes:setTaxRate')
-AddEventHandler('Buisness-taxes:setTaxRate', function(updateTax)
+AddEventHandler('Buisness-taxes:setTaxRate', function(job, newTaxValue)
     local _source = source
-    local jobCode = updateTax
-    print(jobCode)
+    local jobCode = job
+    local taxValue = newTaxValue
+    print(jobCode, taxValue)
 
     -- UPDATE [table] SET [row name] = [new value] WHERE [row name] = [value]
-    exports.ghmattimysql:execute("UPDATE society_ledger SET taxRate = @updateTax WHERE job = @jobcode", { ['taxRate'] = updateTax, ['jobCode'] = jobCode }, function(result)
+    exports.ghmattimysql:execute("UPDATE society_ledger SET taxRate = @updateTax WHERE job = @jobcode", { ['taxRate'] = taxValue, ['jobCode'] = jobCode }, function(result)
         if result[1] ~= nil then
-            --Something
+            TriggerClientEvent('vorp:TipRight', _source, "The Tax Rate is: $" .. taxRate, 4000)
         end
     end)
 end)
