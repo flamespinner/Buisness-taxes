@@ -47,6 +47,26 @@ AddEventHandler('Buisness-taxes:setTaxRate', function(job, newTaxValue)
     end)
 end)
 
+RegisterServerEvent('Buisness-taxes:taxTime')
+AddEventHandler('Buisness-taxes:taxTime', function ()
+ --something here
+end)
+
+RegisterServerEvent('Buisness-taxes:isRepo')
+AddEventHandler('Buisness-taxes:isRepo', function ()
+
+    -- SELECT job FROM society_ledger WHERE repo = 1;
+    exports.ghmattimysql:execute("SELECT job FROM society_ledger WHERE repo = 1", function(result)
+        if result[1] ~= nil then
+            local webhook = Config.webhookURL
+            local isRepo = result[1].job
+            print(result[1].job)
+            SendWebhookMessage(webhook,"RepoStatus:" .. isRepo)
+        end
+    end)
+end)
+
+
 
 
 RegisterCommand("getTime", function (source, args, rawCommand)

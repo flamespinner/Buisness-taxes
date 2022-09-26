@@ -42,6 +42,10 @@ RegisterCommand("settaxrate", function()
     end)
 end)
 
+RegisterCommand("repostatus", function()
+    TriggerServerEvent("Buisness-taxes:isRepo")
+end)
+
 
 
 ---------------- NUI Example ----------------
