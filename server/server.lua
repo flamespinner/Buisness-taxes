@@ -54,7 +54,6 @@ end)
 
 RegisterServerEvent('Buisness-taxes:isRepo')
 AddEventHandler('Buisness-taxes:isRepo', function ()
-
     -- SELECT job FROM society_ledger WHERE repo = 1;
     exports.ghmattimysql:execute("SELECT job FROM society_ledger WHERE repo = 1", function(result)
         if result[1] ~= nil then
