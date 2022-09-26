@@ -34,7 +34,7 @@ AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
     }, function(result)
         if result[1] ~= nil then
             print(result)
-            TriggerClientEvent('vorp:ShowAdvancedRightNotification', result, "something", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
+            --TriggerClientEvent('vorp:ShowAdvancedRightNotification', result, "something", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
         end
     end)
     --TriggerClientEvent('Buisness-taxes:showTaxRate', _source,showTaxRate) --If I want to send it back to client
