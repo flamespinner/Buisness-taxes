@@ -24,12 +24,20 @@ end)
 RegisterCommand("settaxrate", function(setTaxRate)
     local buttonTxt = "Update Tax"
     local placeholderTxt = "Amount"
-
     local result = setTaxRate
     local splitString = {}
-      for i in string.gmatch(result, "%S+") do
-         splitString[#splitString + 1] = i
-       end
+
+    TriggerEvent("vorpinputs:getInput", buttonTxt, placeholderTxt, function(result)
+        if result ~= "" or result then
+            print(result) -- returs a string
+        else
+            print("its empty?") -- notify
+        end
+    end)
+
+    for i in string.gmatch(result, "%S+") do
+        splitString[#splitString + 1] = i
+    end
 
     local data1, data2 = splitString[1],splitString[2]
 
