@@ -25,16 +25,16 @@ AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
     local jobCode = inputResult
     --Do something here when this is ran
     print("Debug: serverside getTaxRate Ran")
-    print("Incoming: ", inputResult)
-    print("New Var: ", jobCode)
+    print("Incoming - inputResult: ", inputResult)
+    print("New Var - jobCode: ", jobCode)
 
     exports.ghmattimysql:execute("SELECT * FROM society_ledger WHERE job = @jobCode",
     {
         ["@jobCode"] = jobCode
     }, function(result)
-        if result[1] then
+        if result[1] ~= nil then
             print(result)
-            --TriggerClientEvent('vorp:ShowAdvancedRightNotification', _source, "something", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
+            TriggerClientEvent('vorp:ShowAdvancedRightNotification', result, "something", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
         end
     end)
     --TriggerClientEvent('Buisness-taxes:showTaxRate', _source,showTaxRate) --If I want to send it back to client
