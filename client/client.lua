@@ -34,7 +34,7 @@ RegisterCommand("settaxrate", function()
                 splitString[#splitString + 1] = i
             end
         
-            TriggerServerEvent("Buisness-taxes:setTaxRate", job, newTaxValue) -- Trigger Event
+            --TriggerServerEvent("Buisness-taxes:setTaxRate", job, newTaxValue) -- Trigger Event
             print(job, newTaxValue)
         else
             print("its empty?") -- notify
