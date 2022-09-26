@@ -5,14 +5,14 @@
 local button = "Confirm" -- button label 
 local placeholder = "Insert Buisness Code" -- Field Placeholder Text
 
-RegisterCommand("gettaxrate", function(source, args, rawCommand)
+RegisterCommand("gettaxrate", function()
     local buttonTxt = "Confirm"
-    local placeholderTxt = "Job Title"
+    local placeholderTxt = "Job Code"
 
     TriggerEvent("vorpinputs:getInput", buttonTxt, placeholderTxt, function(inputResult)
         if inputResult ~= "" or inputResult then
             TriggerServerEvent("Buisness-taxes:getTaxRate", inputResult) -- Trigger Event
-            --Do something
+            --Debug
             print(inputResult)
         else
             print("Empty String")
@@ -21,10 +21,20 @@ RegisterCommand("gettaxrate", function(source, args, rawCommand)
     end)
 end)
 
---[[ RegisterNetEvent('Buisness-taxes:showTaxRate')
-AddEventHandler('Buisness-taxes:showTaxRate', function(showTaxRate)
-	--run code here
-end) ]] --Return from server side to client side
+RegisterCommand("settaxrate", function(setTaxRate)
+    local buttonTxt = "Update Tax"
+    local placeholderTxt = "Amount"
+
+    local result = setTaxRate
+    local splitString = {}
+      for i in string.gmatch(result, "%S+") do
+         splitString[#splitString + 1] = i
+       end
+
+    local data1, data2 = splitString[1],splitString[2]
+
+    print(data1,data2)
+end)
 
 
 

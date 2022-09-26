@@ -32,61 +32,21 @@ AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
     end)
 end)
 
-
-
-
-
-
----------------- DataBase Query Examples ----------------
----------------- SQL Knowledge is needed to utilize DataBase Queries ----------------
----------------- Examples are very simplistic and should be drasstically expanded upon if used. ----------------
-RegisterCommand("sqltest", function(source, args, rawCommand)
-    local User = VorpCore.getUser(source)
+RegisterServerEvent('Buisness-taxes:setTaxRate')
+AddEventHandler('Buisness-taxes:setTaxRate', function(updateTax)
     local _source = source
-    local Character = User.getUsedCharacter
-    local identifier = Character.identifier
-    local charid = Character.charIdentifier
-    message = GetPlayerName(source)
+    local jobCode = updateTax
+    print(jobCode)
 
-    local webhook = Config.webhookURL
-
-    -- Insert/Add data to a database table, the table is named 'test'
-    exports.ghmattimysql:execute("INSERT INTO test (id, name) VALUES (@identifier, @name)", {["@identifier"] = identifier, ["@name"] = 'testuser'}, function(result)
-        if result then
-            TriggerClientEvent('vorp:ShowAdvancedRightNotification', _source, "your text", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
-            SendWebhookMessage(webhook,message)
-        end
-    end)
-   
-    -- Grab all data from a database table, the table is named 'test'
-    exports.ghmattimysql:execute("SELECT * FROM test", {}, function(result)
-        if result[1] then
-            TriggerClientEvent('vorp:ShowAdvancedRightNotification', _source, "your text", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
-            SendWebhookMessage(webhook,message)
-        end
-    end)
-
-    -- Grab a specific data column from a database table, the table is named 'test', where the name of the user is 'testuser'
-    exports.ghmattimysql:execute("SELECT id FROM test WHERE name = @name", {["@name"] = 'testuser'}, function(result)
-        if result[1] then
-            TriggerClientEvent('vorp:ShowAdvancedRightNotification', _source, "something", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
-            SendWebhookMessage(webhook,message)
-        end
-    end)
-
-    exports.ghmattimysql:execute("UPDATE test SET name = @name WHERE identifier = @identifier", {["@update"] = 'testuser1', ["@identifier"] = identifier}, function(result)
-        TriggerClientEvent('vorp:ShowAdvancedRightNotification', _source, "Data Updated", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
-        SendWebhookMessage(webhook,message)
-    end)
-
-    exports.ghmattimysql:execute("DELETE FROM test WHERE identifier = @identifier", {["@identifier"] = identifier}, function(result)
-        if result then
-            if result.affectedRows >= 1 then
-                TriggerClientEvent('vorp:ShowAdvancedRightNotification', _source, "Data Removed", "generic_textures", "tick", "COLOR_PURE_WHITE", 4000)
-            end
+    -- UPDATE [table] SET [row name] = [new value] WHERE [row name] = [value]
+    exports.ghmattimysql:execute("UPDATE society_ledger SET taxRate = @updateTax WHERE job = @jobcode", { ['taxRate'] = updateTax, ['jobCode'] = jobCode }, function(result)
+        if result[1] ~= nil then
+            --Something
         end
     end)
 end)
+
+
 
 RegisterCommand("getTime", function (source, args, rawCommand)
     local source = source
@@ -95,7 +55,6 @@ RegisterCommand("getTime", function (source, args, rawCommand)
 
     if (day == "Monday") then
         print("It's Monday!")
-        
     end
     if (day == "Tuesday") then
         print("It's Tuesday!")
