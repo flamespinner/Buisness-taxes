@@ -37,7 +37,7 @@ AddEventHandler('Buisness-taxes:setTaxRate', function(job, newTaxValue)
     local _source = source
     local jobCode = job
     local taxValue = newTaxValue
-    print(jobCode, taxValue)
+    print("Server Event", jobCode, taxValue)
 
     -- UPDATE [table] SET [row name] = [new value] WHERE [row name] = [value]
     exports.ghmattimysql:execute("UPDATE society_ledger SET taxRate = @updateTax WHERE job = @jobcode", { ['taxRate'] = taxValue, ['jobCode'] = jobCode }, function(result)
