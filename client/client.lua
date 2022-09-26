@@ -29,8 +29,8 @@ RegisterCommand("settaxrate", function()
 
     TriggerEvent("vorpinputs:getInput", buttonTxt, placeholderTxt, function(result)
         if result ~= "" or result then
-            print(result[1]) -- returs a string
-            for i in string.gmatch(result[1], "%S+") do
+            print(result) -- returs a string
+            for i in string.gmatch(result, "%S+") do
                 splitString[#splitString + 1] = i
             end
         
