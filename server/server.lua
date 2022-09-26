@@ -60,12 +60,7 @@ AddEventHandler('Buisness-taxes:isRepo', function ()
         if result[1] ~= nil then
             local webhook = Config.webhookURL
             local isRepo = result[1].job
-            print("isrepo: ", isRepo)
-            print("result: ", result)
-            print("result1: ", result[1])
-            print("result1.job: ", result[1].job)
-            print("result2.job: ", result[2].job)
-            print("result1.job: ", result[1].job)
+            print(isRepo)
             SendWebhookMessage(webhook,"RepoStatus:" .. isRepo)
         end
     end)
