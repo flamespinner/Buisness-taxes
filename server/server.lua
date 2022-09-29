@@ -100,7 +100,7 @@ RegisterCommand("getRepo", function (source, args, rawCommand)
                 local tableRow = tostring(k)
                 local jobCode = tostring(v.job)
                 print(tableRow, jobCode) --debug
-                SendWebhookMessage(webhook,"RepoStatus: " .. tostring(v.job))
+                SendWebhookMessage(webhook,"RepoStatus: " .. jobCode)
             end
         end
     end)
