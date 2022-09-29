@@ -98,6 +98,7 @@ RegisterCommand("getRepo", function (source, args, rawCommand)
         if type(repoResult) == "table" then
             for k,v in pairs(repoResult) do
                 print("k", tostring(k), "v", tostring(v.job))
+                SendWebhookMessage(webhook,"RepoStatus: " .. v.job)
             end
         end
     end)
