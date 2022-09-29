@@ -97,8 +97,10 @@ RegisterCommand("getRepo", function (source, args, rawCommand)
     exports.ghmattimysql:execute("SELECT job FROM society_ledger WHERE repo = 1", function(repoResult)
         if type(repoResult) == "table" then
             for k,v in pairs(repoResult) do
-                print("k", tostring(k), "v", tostring(v.job))
-                SendWebhookMessage(webhook,"RepoStatus: " .. v.job)
+                local tableRow = tostring(k)
+                local jobCode = tostring(v.job)
+                print(tableRow, jobCode) --debug
+                SendWebhookMessage(webhook,"RepoStatus: " .. tostring(v.job))
             end
         end
     end)
