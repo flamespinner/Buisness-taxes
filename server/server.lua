@@ -97,7 +97,7 @@ RegisterCommand("getRepo", function (source, args, rawCommand)
     exports.ghmattimysql:execute("SELECT job FROM society_ledger WHERE repo = 1", function(repoResult)
         if type(repoResult) == "table" then
             for k,v in pairs(repoResult) do
-                print("k ", tostring(k), "v ", tostring(v))
+                print("k", tostring(k), "v", tostring(v.job))
             end
         end
     end)
