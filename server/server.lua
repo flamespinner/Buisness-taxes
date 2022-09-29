@@ -32,7 +32,7 @@ AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
     end)
 end)
 
-RegisterServerEvent('Buisness-taxes:setTaxRate')
+--[[ RegisterServerEvent('Buisness-taxes:setTaxRate')
 AddEventHandler('Buisness-taxes:setTaxRate', function(job, newTaxValue)
     local _source = source
     local jobCode = job
@@ -45,11 +45,11 @@ AddEventHandler('Buisness-taxes:setTaxRate', function(job, newTaxValue)
             --TriggerClientEvent('vorp:TipRight', _source, "The Tax Rate is: $" .. taxRate, 4000)
         end
     end)
-end)
+end) ]]
 
 RegisterServerEvent('Buisness-taxes:taxTime')
 AddEventHandler('Buisness-taxes:taxTime', function ()
- --something here
+
 end)
 
 RegisterServerEvent('Buisness-taxes:isRepo')
@@ -60,12 +60,10 @@ AddEventHandler('Buisness-taxes:isRepo', function ()
             local webhook = Config.webhookURL
             local isRepo = result[1].job
             print(isRepo)
-            SendWebhookMessage(webhook,"RepoStatus:" .. isRepo)
+            SendWebhookMessage(webhook,"RepoStatus: " .. isRepo)
         end
     end)
 end)
-
-
 
 
 RegisterCommand("getTime", function (source, args, rawCommand)
@@ -96,7 +94,11 @@ end)
 RegisterCommand("getRepo", function (source, args, rawCommand)
     local webhook = Config.webhookURL
 
-    exports.ghmattimysql:execute("SELECT repo FROM society_ledger WHERE repo = @repo", {["@repo"] = '1'}, function(Reporesult)
-        SendWebhookMessage(webhook,Reporesult)
+    exports.ghmattimysql:execute("SELECT job FROM society_ledger WHERE repo = 1", function(repoResult)
+        if type(repoResult) == "table" then
+            for k,v in pairs(repoResult) do
+                print(tostring(k),tostring(v))
+            end
+        end
     end)
 end)
