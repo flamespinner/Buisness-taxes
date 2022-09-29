@@ -52,18 +52,25 @@ AddEventHandler('Buisness-taxes:taxTime', function ()
 
 end)
 
-RegisterServerEvent('Buisness-taxes:isRepo')
-AddEventHandler('Buisness-taxes:isRepo', function ()
-    -- SELECT job FROM society_ledger WHERE repo = 1;
-    exports.ghmattimysql:execute("SELECT job FROM society_ledger WHERE repo = 1", function(result)
-        if result[1] ~= nil then
-            local webhook = Config.webhookURL
-            local isRepo = result[1].job
-            print(isRepo)
-            SendWebhookMessage(webhook,"RepoStatus: " .. isRepo)
+RegisterServerEvent("Buisness-taxes:getRepoStatus")
+AddEventHandler("Buisness-taxes:getRepoStatus", function()
+    local webhook = Config.webhookURL
+
+    exports.ghmattimysql:execute("SELECT job FROM society_ledger WHERE repo = 1", function(repoResult)
+        if type(repoResult) == "table" then
+            for k,v in pairs(repoResult) do
+                local tableRow = tostring(k)
+                local jobCode = tostring(v.job)
+                print(tableRow, jobCode) --debug
+                SendWebhookMessage(webhook,"RepoStatus: " .. jobCode)
+            end
         end
     end)
 end)
+
+
+
+
 
 
 RegisterCommand("getTime", function (source, args, rawCommand)
@@ -89,19 +96,4 @@ RegisterCommand("getTime", function (source, args, rawCommand)
 
     print("The Time is:", time)
 
-end)
-
-RegisterCommand("getRepo", function (source, args, rawCommand)
-    local webhook = Config.webhookURL
-
-    exports.ghmattimysql:execute("SELECT job FROM society_ledger WHERE repo = 1", function(repoResult)
-        if type(repoResult) == "table" then
-            for k,v in pairs(repoResult) do
-                local tableRow = tostring(k)
-                local jobCode = tostring(v.job)
-                print(tableRow, jobCode) --debug
-                SendWebhookMessage(webhook,"RepoStatus: " .. jobCode)
-            end
-        end
-    end)
 end)
