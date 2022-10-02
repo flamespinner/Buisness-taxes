@@ -16,6 +16,15 @@ function SendWebhookMessage(webhook,message)
     PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({username = "Server", content = message}), { ['Content-Type'] = 'application/json' })
 end
 
+--end of setup
+
+AddEventHandler('onResourceStart', function (Buisness-taxes)
+    if (GetCurrentResourceName() ~= 'Buisness-taxes') then
+        return
+    end
+    print('The resource ' .. resourceName .. ' has been started')
+end)
+
 RegisterServerEvent('Buisness-taxes:getTaxRate')
 AddEventHandler('Buisness-taxes:getTaxRate', function(inputResult)
     local _source = source
