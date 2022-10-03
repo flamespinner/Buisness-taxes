@@ -11,7 +11,7 @@ RegisterCommand("gettaxrate", function()
 
     TriggerEvent("vorpinputs:getInput", buttonTxt, placeholderTxt, function(inputResult)
         if inputResult ~= "" or inputResult then
-            TriggerServerEvent("Buisness-taxes:getTaxRate", inputResult) -- Trigger Event
+            TriggerServerEvent("buisnesstaxes:getTaxRate", inputResult) -- Trigger Event
             --Debug
             print(inputResult)
         else
@@ -34,7 +34,7 @@ RegisterCommand("settaxrate", function()
                 splitString[#splitString + 1] = i
             end
         
-            TriggerServerEvent("Buisness-taxes:setTaxRate", job, newTaxValue) -- Trigger Event
+            TriggerServerEvent("buisnesstaxes:setTaxRate", job, newTaxValue) -- Trigger Event
             print("settaxrate", job, newTaxValue)
         else
             print("its empty?") -- notify
@@ -43,7 +43,7 @@ RegisterCommand("settaxrate", function()
 end)
 
 RegisterCommand("repostatus", function()
-    TriggerServerEvent("Buisness-taxes:isRepo")
+    TriggerServerEvent("buisnesstaxes:isRepo")
 end)
 
 

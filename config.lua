@@ -9,13 +9,19 @@ Config.webhookcolor = 16711680
 Config.unemployed = "unemployed"
 
 Config.monthlyrepo = true
-Config.repotime = {
+--[[ Config.repotime = {
     day = 15,
     hour = 7,
     minute = 10
+} ]]
+
+Config.repotime = {
+    day = "03",
+    hour = "13",
+    minute = "35"
 }
 
-Config.weeklyrepo = false
+--[[ Config.weeklyrepo = false
 Config.repotime2 = {
     day1 = 1,
     day2 = 15,
@@ -23,7 +29,7 @@ Config.repotime2 = {
     day4 = 45,
     hour = 0,
     minute = 0
-}
+} ]]
 
 -- Active language/locale
 Config.defaultlang = "en_lang"
