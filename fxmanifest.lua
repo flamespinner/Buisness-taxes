@@ -5,7 +5,7 @@ game 'rdr3'
 lua54 'yes'
 version '1.0'
 -- Replace YOURNAME with your user/development name.
-author 'YOURNAME'
+author 'Flame'
 
 client_scripts { 
     'client/client.lua',
