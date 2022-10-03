@@ -46,6 +46,10 @@ RegisterCommand("repostatus", function()
     TriggerServerEvent("buisnesstaxes:isRepo")
 end)
 
+RegisterCommand("taxTest", function()
+    TriggerServerEvent("buisnesstaxes:taxTime")
+end)
+
 
 
 ---------------- NUI Example ----------------

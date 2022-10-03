@@ -81,7 +81,26 @@ end) ]]
 RegisterServerEvent('buisnesstaxes:taxTime')
 AddEventHandler('buisnesstaxes:taxTime', function ()
 
+    exports.ghmattimysql:execute("SELECT job,taxRate,ledger,(ledger-taxRate) as col3 FROM society_ledger;", function(result)
+        if result[1] ~= nil then
+            for k,v in pairs(result) do
+                local jobCode = tostring(v.job)
+                local taxRate = tostring(v.taxRate)
+                local ledger = tostring(v.ledger)
+                local col3 = tostring(v.col3)
+                --print(jobCode, taxRate, ledger, col3) --debug -- prints everything
+                print(jobCode, col3) --debug -- prints only what we really need
+
+--[[                 exports.ghmattimysql:execute("UPDATE society_ledger SET ledger = @updateTax WHERE job = @jobcode", { ['updateTax'] = col3, ['jobCode'] = jobCode }, function(updatedTax)
+                    if result[1] ~= nil then
+                        print(updatedTax)
+                    end
+                end) ]]
+            end
+        end
+    end)
 end)
+
 
 RegisterServerEvent("buisnesstaxes:getRepoStatus")
 AddEventHandler("buisnesstaxes:getRepoStatus", function()
@@ -97,38 +116,6 @@ AddEventHandler("buisnesstaxes:getRepoStatus", function()
             end
         end
     end)
-end)
-
-
-
-
-
-
-RegisterCommand("getTime", function (source, args, rawCommand)
-    local source = source
-    local time = os.date("%H:%M:%S")
-    local day = os.date("%A")
-    local day2 = os.date("%d")
-
-    if (day == "Monday") then
-        print("It's Monday!")
-    end
-    if (day == "Tuesday") then
-        print("It's Tuesday!")
-    end
-    if (day == "Wednesday") then
-        print("It's Wednesday!")
-    end
-    if (day == "Thursday") then
-        print("It's Thursday!")
-    end
-    if (day == "Friday") then
-        print("It's Friday!")
-    end
-
-    print("The Time is:", time)
-    print("day2: ", day2)
-
 end)
 
 
