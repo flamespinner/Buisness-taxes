@@ -47,7 +47,7 @@ RegisterCommand("repostatus", function()
 end)
 
 RegisterCommand("taxTest", function()
-    TriggerServerEvent("buisnesstaxes:repoSet")
+    TriggerServerEvent("buisnesstaxes:setUnemploy")
 end)
 
 

@@ -63,6 +63,20 @@ AddEventHandler('buisnesstaxes:getTaxRate', function(inputResult)
     end)
 end)
 
+RegisterServerEvent('buisnesstaxes:setUnemploy')
+AddEventHandler('buisnesstaxes:setUnemploy', function()
+    exports.ghmattimysql:execute("SELECT job FROM society_ledger WHERE repo = 1", {}, function(result)
+        if result[1] ~= nil then
+            for k,v in pairs(result) do
+                print(v.job)
+                exports.ghmattimysql:execute("UPDATE characters SET job = 'unemployed' WHERE job = @jobID;", {
+                    ['jobID'] = tostring(v.job)
+                })
+            end
+        end
+    end)
+end)
+
 --[[ RegisterServerEvent('buisnesstaxes:setTaxRate')
 AddEventHandler('buisnesstaxes:setTaxRate', function(job, newTaxValue)
     local _source = source
@@ -80,7 +94,6 @@ end) ]]
 
 RegisterServerEvent('buisnesstaxes:taxTime')
 AddEventHandler('buisnesstaxes:taxTime', function ()
-
     exports.ghmattimysql:execute("SELECT job,taxRate,ledger,(ledger-taxRate) as col3 FROM society_ledger;", function(result)
         if result[1] ~= nil then
             for k,v in pairs(result) do
@@ -113,11 +126,9 @@ AddEventHandler('buisnesstaxes:repoSet', function ()
     end)
 end)
 
-
-RegisterServerEvent("buisnesstaxes:getRepoStatus")
+RegisterServerEvent("buisnesstaxes:getRepoStatus") --need to be fixed
 AddEventHandler("buisnesstaxes:getRepoStatus", function()
     local webhook = Config.webhookURL
-
     exports.ghmattimysql:execute("SELECT job FROM society_ledger WHERE repo = 1", function(repoResult)
         if type(repoResult) == "table" then
             for k,v in pairs(repoResult) do
