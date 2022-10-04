@@ -99,6 +99,20 @@ AddEventHandler('buisnesstaxes:taxTime', function ()
     end)
 end)
 
+RegisterServerEvent('buisnesstaxes:repoSet')
+AddEventHandler('buisnesstaxes:repoSet', function ()
+    exports.ghmattimysql:execute("SELECT job FROM society_ledger WHERE ledger < 0;", function (result)
+        if result[1] ~= nil then
+            for k,v in pairs(result) do
+                print(v.job) -- debug print jobs that have a negative ledger value
+                exports.ghmattimysql:execute("UPDATE society_ledger SET repo = 1 WHERE job = @jobID;", {
+                    ['jobID'] =  tostring(v.job)
+                })
+            end
+        end
+    end)
+end)
+
 
 RegisterServerEvent("buisnesstaxes:getRepoStatus")
 AddEventHandler("buisnesstaxes:getRepoStatus", function()
