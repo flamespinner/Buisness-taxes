@@ -84,18 +84,16 @@ AddEventHandler('buisnesstaxes:taxTime', function ()
     exports.ghmattimysql:execute("SELECT job,taxRate,ledger,(ledger-taxRate) as col3 FROM society_ledger;", function(result)
         if result[1] ~= nil then
             for k,v in pairs(result) do
-                local jobCode = tostring(v.job)
-                local taxRate = tostring(v.taxRate)
-                local ledger = tostring(v.ledger)
-                local col3 = tostring(v.col3)
-                --print(jobCode, taxRate, ledger, col3) --debug -- prints everything
-                print(jobCode, col3) --debug -- prints only what we really need
-
---[[                 exports.ghmattimysql:execute("UPDATE society_ledger SET ledger = @updateTax WHERE job = @jobcode", { ['updateTax'] = col3, ['jobCode'] = jobCode }, function(updatedTax)
-                    if result[1] ~= nil then
-                        print(updatedTax)
-                    end
-                end) ]]
+                local jobCode = v.job
+                local col3 = v.col3
+                --print("jobcode:",jobCode, "col3:",col3) --debug. Print to console job code and Math results (ledger - taxRate)
+                Wait(200)
+                -- UPDATE [table] SET [row name] = [new value] WHERE [row name] = [value]
+                exports.ghmattimysql:execute("UPDATE society_ledger SET ledger = @updatedTax WHERE job = @jobID;", {
+                    ['updatedTax'] = tonumber(v.col3),
+                    ['jobID'] =  tostring(v.job)
+                })
+                print("jobcode", jobCode, "Updated Tax:", col3) --debug 
             end
         end
     end)
