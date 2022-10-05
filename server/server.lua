@@ -40,7 +40,7 @@ AddEventHandler('onResourceStart', function(buisnesstaxes)
                 print("It's Tax Day")
                 --print(day, dayActual, hour, hourActual, minute, minuteActual) --debug
             else
-                print("It's not Tax Day")
+                print("It's not Tax Day", os.date("%d/%m/%Y %H:%M:%S"))
                 --print(day, dayActual, hour, hourActual, minute, minuteActual) --debug
             end
         end
