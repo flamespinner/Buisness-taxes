@@ -39,6 +39,7 @@ AddEventHandler('onResourceStart', function(buisnesstaxes)
             if (minute == minuteActual) then
                 print("It's Tax Day")
                 --print(day, dayActual, hour, hourActual, minute, minuteActual) --debug
+                -- Calculate Tax Rate > Update Tax Rate > Repo Buisnesses
             else
                 print("It's not Tax Day", os.date("%d/%m/%Y %H:%M:%S"))
                 --print(day, dayActual, hour, hourActual, minute, minuteActual) --debug
