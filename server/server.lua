@@ -39,6 +39,7 @@ AddEventHandler('onResourceStart', function(buisnesstaxes)
             if (minute == minuteActual) then
                 print("It's Tax Day")
                 --print(day, dayActual, hour, hourActual, minute, minuteActual) --debug
+                TriggerServerEvent("buisnesstaxes:taxTime")
                 -- Calculate Tax Rate > Update Tax Rate > Repo Buisnesses
             else
                 print("It's not Tax Day", os.date("%d/%m/%Y %H:%M:%S"))
@@ -108,6 +109,8 @@ AddEventHandler('buisnesstaxes:taxTime', function ()
                     ['jobID'] =  tostring(v.job)
                 })
                 print("jobcode", jobCode, "Updated Tax:", col3) --debug 
+                Wait(400)
+                TriggerServerEvent("buisnesstaxes:repoSet")
             end
         end
     end)
